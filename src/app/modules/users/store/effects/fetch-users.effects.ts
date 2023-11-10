@@ -17,7 +17,7 @@ export const fetchUsers = createEffect(
         usersListService.fetchUsers().pipe(
           map((items) => fetchUsersSuccessAction({items})),
           catchError((error: { message: any }) =>
-            of(fetchUsersFailureAction({validationErrors: error.message}))
+            of(fetchUsersFailureAction({errorMessage: error.message}))
           )
         )
       )

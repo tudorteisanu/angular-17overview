@@ -1,0 +1,21 @@
+.data-table {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  width: 100%;
+  border-collapse: collapse;
+
+  &__col {
+    border: 1px solid lightgray;
+    padding: 1rem;
+  }
+
+
+  .even {
+    background-color: #e3edf0;
+  }
+
+  &__no-items {
+    text-align: center;
+    padding: 1rem;
+    color: gray;
+  }
+}

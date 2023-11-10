@@ -10,7 +10,7 @@ import {deleteUserSuccessAction} from "@/modules/users/store/actions/delete-user
 const initialState: UsersStoreStateInterface = {
   isFetching: false,
   items: [],
-  validationErrors: null,
+  errorMessage: null,
 }
 
 export const usersReducers = createReducer(initialState,
@@ -26,7 +26,7 @@ export const usersReducers = createReducer(initialState,
   on(fetchUsersFailureAction, (state, action) => ({
     ...state,
     isFetching: false,
-    validationErrors: action.validationErrors,
+    errorMessage: action.errorMessage,
   })),
   on(deleteUserSuccessAction, (state, action) => ({
     ...state,

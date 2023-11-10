@@ -1,16 +1,10 @@
-
-<ul>
-  @if (validationErrors()) {
-    <span>ValidationErrors</span>
-  }
-  @for (user of users(); track user.id) {
-  <li>{{user.username}} <button (click)="deleteUser(user.id)">delete</button></li>
-  } @empty {
-    <div>Empty list!</div>
-  }
-  @if (isFetching()) {
-  <span>Is fetching...</span>
-  }
-</ul>
-
-<button (click)="fetchUsers()">fetch users</button>
+<section class="users-list-page">
+  @if (errorMessage()) {
+    <span>{{errorMessage()}}</span>
+    }
+    <app-data-table
+      [items]="users()"
+      [headers]="headers"
+      (onDeleteItem)="deleteUser($event)"
+    />
+</section>

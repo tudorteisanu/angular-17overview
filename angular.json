@@ -13,15 +13,6 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
-      "i18n": {
-        "sourceLocale": "en",
-        "locales": {
-          "fr": {
-            "translation": "src/locale/messages.fr.xlf",
-            "baseHref": ""
-          }
-        }
-      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -50,7 +41,6 @@
           },
           "configurations": {
             "production": {
-              "localize": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -111,6 +101,11 @@
           }
         }
       }
+    }
+  },
+  "cli": {
+    "cache": {
+      "enabled": false
     }
   }
 }

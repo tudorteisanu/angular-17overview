@@ -15,7 +15,7 @@
   ],
   "include": [
     "src/**/*.d.ts",
-    "src/**/*.ts"
+    "src/**/*.{ts,scss}"
   ],
   "exclude": [
     "src/**/*.spec.ts"

@@ -1,4 +1,4 @@
-import {ApplicationConfig, isDevMode} from '@angular/core';
+import {ApplicationConfig, CSP_NONCE, isDevMode} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -10,6 +10,10 @@ import {provideStoreDevtools} from "@ngrx/store-devtools";
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    {
+      provide: CSP_NONCE,
+      useValue: 'myRandomNonceValue'
+    },
     provideHttpClient(withFetch()),
     provideRouter(routes),
     provideClientHydration(

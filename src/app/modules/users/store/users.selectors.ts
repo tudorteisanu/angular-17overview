@@ -13,3 +13,8 @@ export const selectUsers = createSelector(
   selectUsersFeature,
   (state: UsersStoreStateInterface) => state.items
 );
+
+export const selectErrorMessage = createSelector(
+  selectUsersFeature,
+  (state: UsersStoreStateInterface) => state.errorMessage
+);
