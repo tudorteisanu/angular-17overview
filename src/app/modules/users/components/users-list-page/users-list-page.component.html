@@ -1,19 +1,17 @@
-<section class="users-list-page">
-  <div class="users-list-page__content">
-    @if (errorMessage()) {
+<app-default-layout>
+  <section class="users-list-page">
+    <div class="users-list-page__content">
+      @if (errorMessage()) {
       <span>{{errorMessage()}}</span>
       }
-      <app-data-table
-        [items]="users()"
-        [headers]="headers"
-        (onDeleteItem)="deleteUser($event)"
-      >
-      <ng-template #actions let-item="item" let-header="header" >
-        <button (click)="deleteUser(item.id)">Delete</button>
-      </ng-template>
-      <ng-template #item let-item="item" let-header="header" >
-        {{item[header.value]}}
-      </ng-template>
+      <app-data-table [items]="users()" [headers]="headers" (onDeleteItem)="deleteUser($event)">
+        <ng-template #actions let-item="item" let-header="header">
+          <button (click)="deleteUser(item.id)">Delete</button>
+        </ng-template>
+        <ng-template #item let-item="item" let-header="header">
+          {{item[header.value]}}
+        </ng-template>
       </app-data-table>
-  </div>
-</section>
+    </div>
+  </section>
+</app-default-layout>

@@ -7,13 +7,14 @@ import {selectErrorMessage, selectIsFetching, selectUsers} from "@/modules/users
 import {deleteUserAction} from "@/modules/users/store/actions/delete-user.action";
 import { DataTableComponent } from "@/components/data-table/data-table.component";
 import { userTableHeaders } from '../../data';
+import { DefaultLayoutComponent } from "../../../../layouts/default-layout/default-layout.component";
 
 @Component({
     selector: 'app-users-list-page',
     standalone: true,
     templateUrl: './users-list-page.component.html',
     styleUrl: './users-list-page.component.scss',
-    imports: [CommonModule, DataTableComponent]
+    imports: [CommonModule, DataTableComponent, DefaultLayoutComponent]
 })
 export class UsersListPageComponent implements OnInit{
   users: Signal<UserInterface[]> = this.store.selectSignal(selectUsers)

@@ -6,13 +6,14 @@ import {createUserAction} from "@/modules/create-user/store/actions/create-user.
 import {selectIsSubmitting, selectValidationErrors} from "@/modules/create-user/store/create-user.selectors";
 import {BackendErrorsInterface} from "@/types/backend-errors.interface";
 import {Meta} from "@angular/platform-browser";
+import { DefaultLayoutComponent } from "../../../../layouts/default-layout/default-layout.component";
 
 @Component({
-  selector: 'app-create-user-page',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './create-user-page.component.html',
-  styleUrl: './create-user-page.component.scss'
+    selector: 'app-create-user-page',
+    standalone: true,
+    templateUrl: './create-user-page.component.html',
+    styleUrl: './create-user-page.component.scss',
+    imports: [CommonModule, ReactiveFormsModule, DefaultLayoutComponent]
 })
 export class CreateUserPageComponent implements OnInit{
   isSubmitting: Signal<boolean> = this.store.selectSignal(selectIsSubmitting);
