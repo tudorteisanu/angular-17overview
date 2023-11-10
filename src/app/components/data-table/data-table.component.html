@@ -1,11 +1,10 @@
-
 <table class="data-table">
   <thead>
     <tr class="data-table__heading">
       @for (header of headers; track header.value) {
-        <th class="data-table__col data-table__heading--item">
-          {{ header.text }}
-        </th>
+      <th class="data-table__col data-table__heading--item">
+        {{ header.text }}
+      </th>
       }
     </tr>
   </thead>
@@ -13,15 +12,23 @@
     @for (item of items; track item.id; let even = $even) {
     <tr class="data-table__row" [ngClass]="{ even }">
       @for (header of headers; track header.value) {
-        @if (header.value === 'actions') {
-          <td class="data-table__col">
-            <button (click)="emitDelete(item.id)">delete</button>
-          </td>
+      @if (header.value === 'actions') {
+      <td class="data-table__col">
+        <ng-template *ngTemplateOutlet="actionsRef; context : { item, header }">
+          <button (click)="emitDelete(item.id)">delete</button>
+        </ng-template>
+      </td>
+      } @else {
+      <td class="data-table__col">
+        @if (itemRef) {
+          <ng-template *ngTemplateOutlet="itemRef; context : { item, header }">
+
+          </ng-template>
         } @else {
-          <td class="data-table__col">
-            {{item[header.value]}}
-          </td>
+          {{item[header.value]}}
         }
+      </td>
+      }
       }
     </tr>
     } @empty {

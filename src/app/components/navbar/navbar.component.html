@@ -1,12 +1,10 @@
-<nav class="menu">
-  @for (link of links; track link.url) {
-    <a
-    [routerLink]="[link.url]"
-    class="menu__item"
-     routerLinkActive="menu__item--active"
-     >
+<div class="menu">
+  <nav class="menu__list">
+    @for (link of links; track link.url) {
+    <a [routerLink]="[link.url]" class="menu__list--item" routerLinkActive="menu__list--active"
+      [routerLinkActiveOptions]="{exact: true}">
       {{ link.title }}
     </a>
-  }
-</nav>
-
+    }
+  </nav>
+</div>

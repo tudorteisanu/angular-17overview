@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, ContentChild, ElementRef, EventEmitter, Input, Output, QueryList, TemplateRef} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,6 +12,8 @@ export class DataTableComponent {
   @Input() items: any = [];
   @Input() headers: any = [];
   @Output() onDeleteItem = new EventEmitter();
+  @ContentChild('item') itemRef!: TemplateRef<any>;
+  @ContentChild('actions') actionsRef!: TemplateRef<any>;
 
   emitDelete(id: string) {
     this.onDeleteItem.emit(id);

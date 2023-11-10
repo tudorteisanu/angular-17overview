@@ -1,19 +1,25 @@
 .menu {
-  max-width: 1024px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
   background: rgb(21, 65, 136);
 
-  &__item {
-    padding: 1rem;
-    color: white;
-    text-decoration: none;
+  &__list {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--item {
+      padding: 1rem;
+      color: white;
+      text-decoration: none;
+    }
 
     &--active {
       text-decoration: underline;
+      text-underline-offset: 0.2rem;
+      text-decoration-thickness: 3px;
     }
   }
 }
