@@ -1,0 +1,36 @@
+@if (errors()) {
+<pre>
+  {{ parsetErrors()  }}
+</pre>
+}
+<h1 i18n="@@introductionHeader">Hello bunny</h1>
+<form [formGroup]="createUserForm" (ngSubmit)="createUser()" >
+  <div>
+    <label >
+      Username
+    </label>
+    <input formControlName="username" />
+    <div>
+      {{createUserForm.controls.username.errors | json}}
+    </div>
+  </div>
+  <div>
+    <label >
+      Email
+    </label>
+  <input formControlName="email" />
+    <div>
+      {{createUserForm.controls.email.errors | json}}
+    </div>
+  </div>
+  <div>
+    <label >
+      BIO
+    </label>
+  <input formControlName="bio" />
+    <div>
+      {{createUserForm.controls.bio.errors | json}}
+    </div>
+  </div>
+  <button type="submit" [disabled]="isSubmitting()"> Submit</button>
+</form>

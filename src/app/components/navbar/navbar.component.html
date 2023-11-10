@@ -1,0 +1,6 @@
+@for (link of links; track link.url) {
+  <a [routerLink]="[link.url]" routerLinkActive="router-link-active">
+    {{ link.title }}
+  </a>
+}
+
