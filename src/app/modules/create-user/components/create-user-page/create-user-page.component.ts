@@ -7,13 +7,14 @@ import {selectIsSubmitting, selectValidationErrors} from "@/modules/create-user/
 import {BackendErrorsInterface} from "@/types/backend-errors.interface";
 import {Meta} from "@angular/platform-browser";
 import { DefaultLayoutComponent } from "../../../../layouts/default-layout/default-layout.component";
+import { TextFieldComponent } from '@/components/base/text-field/text-field.component';
 
 @Component({
     selector: 'app-create-user-page',
     standalone: true,
     templateUrl: './create-user-page.component.html',
     styleUrl: './create-user-page.component.scss',
-    imports: [CommonModule, ReactiveFormsModule, DefaultLayoutComponent]
+    imports: [CommonModule, ReactiveFormsModule, DefaultLayoutComponent, TextFieldComponent]
 })
 export class CreateUserPageComponent implements OnInit{
   isSubmitting: Signal<boolean> = this.store.selectSignal(selectIsSubmitting);
@@ -31,6 +32,13 @@ export class CreateUserPageComponent implements OnInit{
     username:  ['', [Validators.required, Validators.minLength(2), Validators.maxLength(180)]],
     bio: ['', [Validators.minLength(10), Validators.maxLength(180)]],
   })
+
+  messages = {
+    required: 'Required field',
+    minlength: 'Minimum length {requiredLength} (actual: {actualLength})',
+    maxlength: 'Minimum length {requiredLength} (actual: {actualLength})',
+    email: 'Invalid email format',
+  }
 
   constructor(
     private fb: NonNullableFormBuilder,

@@ -5,7 +5,7 @@ import {Store} from "@ngrx/store";
 import {fetchUsersAction} from "@/modules/users/store/actions/fetch-users.action";
 import {selectErrorMessage, selectIsFetching, selectUsers} from "@/modules/users/store/users.selectors";
 import {deleteUserAction} from "@/modules/users/store/actions/delete-user.action";
-import { DataTableComponent } from "@/components/data-table/data-table.component";
+import { DataTableComponent } from "@/components/base/data-table/data-table.component";
 import { userTableHeaders } from '../../data';
 import { DefaultLayoutComponent } from "../../../../layouts/default-layout/default-layout.component";
 

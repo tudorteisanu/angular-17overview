@@ -1,39 +1,18 @@
 <app-default-layout>
   @if (errors()) {
-    <pre>
+  <pre>
       {{ parsetErrors()  }}
     </pre>
-    }
-    <h1>Hello bunny</h1>
-    <form [formGroup]="createUserForm" (ngSubmit)="createUser()" >
-      <div>
-        <label >
-          Username
-        </label>
-        <input formControlName="username" />
-        <div>
-          {{createUserForm.controls.username.errors | json}}
-        </div>
-      </div>
-      <div>
-        <label >
-          Email
-        </label>
-      <input formControlName="email" />
-        <div>
-          {{createUserForm.controls.email.errors | json}}
-        </div>
-      </div>
-      <div>
-        <label >
-          BIO
-        </label>
-      <input formControlName="bio" />
-        <div>
-          {{createUserForm.controls.bio.errors | json}}
-        </div>
-      </div>
-      <button type="submit" [disabled]="isSubmitting()"> Submit</button>
-    </form>
-</app-default-layout>
+  }
+  <h1>Hello bunny</h1>
+  <form [formGroup]="createUserForm" (ngSubmit)="createUser()">
 
+      <app-text-field [messages]="messages" label="Username" formControlName="username" />
+
+      <app-text-field [messages]="messages" label="Email" formControlName="email" type="email" />
+
+      <app-text-field [messages]="messages" label="Bio" formControlName="bio" />
+
+    <button class="submit-btn" type="submit" [disabled]="isSubmitting()"> Submit</button>
+  </form>
+</app-default-layout>
