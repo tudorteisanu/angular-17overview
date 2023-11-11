@@ -25,6 +25,12 @@ export function app(): express.Express {
     maxAge: '1y'
   }));
 
+  server.get('/robots.txt', (req, res, next) => {
+    const file = `${browserDistFolder}/assets/robots.txt`;
+
+    res.sendFile(file);
+  });
+
   // All regular routes use the Angular engine
   server.get('*', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
