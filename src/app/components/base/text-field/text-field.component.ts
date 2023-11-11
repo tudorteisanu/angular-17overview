@@ -1,6 +1,14 @@
-import { Component, Input, Optional, Self } from '@angular/core';
+import { Component, Input, Optional, Self, Signal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
+
+
+const deafultMessages = {
+  required: 'Required field',
+  minlength: 'Minimum length {requiredLength} (actual: {actualLength})',
+  maxlength: 'Minimum length {requiredLength} (actual: {actualLength})',
+  email: 'Invalid email format',
+}
 
 @Component({
   selector: 'app-text-field',
@@ -30,8 +38,22 @@ export class TextFieldComponent implements ControlValueAccessor {
 
   get errorMessages(): any {
     return Object.entries(this.errors)
-    .map(([key, options]) => this.parseTranslationParams(this.messages[key], options))
+    .map(([key, options]) => {
+
+      if (key === 'backend') {
+        return options
+      }
+
+      return this.parseTranslationParams(this.commonMessages[key], options)
+    })
     .join(', ')
+  }
+
+  get commonMessages(): Record<string, any> {
+    return {
+      ...deafultMessages,
+      ...this.messages,
+    }
   }
 
   get areMessagesShown(): boolean {

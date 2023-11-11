@@ -13,3 +13,13 @@ export const selectValidationErrors = createSelector(
   selectUsersFeature,
   (state: CreateUserStateInterface) => state.validationErrors
 );
+
+export const selectErrorByName = (name: string) => createSelector(
+  selectUsersFeature,
+  (state: CreateUserStateInterface) => {
+    if (state.validationErrors) {
+      return state.validationErrors[name].join(', ')
+    }
+    return null
+  }
+);
