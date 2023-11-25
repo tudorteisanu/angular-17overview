@@ -1,0 +1,13 @@
+<app-default-layout>
+  <div class="create-user-form">
+    <card>
+      <h1>Hello bunny</h1>
+      <form [formGroup]="createUserForm" (ngSubmit)="createUser()">
+        <app-text-field label="Username" formControlName="username" />
+        <app-text-field label="Email" formControlName="email" type="email" />
+        <app-text-field label="Bio" formControlName="bio" />
+        <button class="submit-btn" type="submit" [disabled]="isSubmitting()"> Submit</button>
+      </form>
+    </card>
+  </div>
+</app-default-layout>

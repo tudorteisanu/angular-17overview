@@ -5,19 +5,18 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
 
-// The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
-
   const serverDistFolder = dirname(fileURLToPath(import.meta.url));
   const browserDistFolder = resolve(serverDistFolder, '../browser');
   const indexHtml = join(serverDistFolder, 'index.server.html');
 
-  const commonEngine = new CommonEngine();
+  const commonEngine = new CommonEngine({
+    enablePerformanceProfiler: true,
+  });
 
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
-
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
@@ -25,7 +24,7 @@ export function app(): express.Express {
     maxAge: '1y'
   }));
 
-  server.get('/robots.txt', (req, res, next) => {
+  server.get('/robots.txt', (req, res) => {
     const file = `${browserDistFolder}/assets/robots.txt`;
 
     res.sendFile(file);
@@ -34,24 +33,31 @@ export function app(): express.Express {
   // All regular routes use the Angular engine
   server.get('*', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
-
+    console.log(req.cookies, 'req.cookie');
     commonEngine
       .render({
         bootstrap,
         documentFilePath: indexHtml,
         url: `${protocol}://${headers.host}${originalUrl}`,
         publicPath: browserDistFolder,
-        providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
+        providers: [
+          { provide: APP_BASE_HREF, useValue: baseUrl },
+        ],
       })
-      .then((html) => res.send(html))
-      .catch((err) => next(err));
+      .then((html) => {
+        return res.send(html)
+      })
+      .catch((err) => {
+        console.log(err, 'server error');
+           next(err)
+      });
   });
 
   return server;
 }
 
 function run(): void {
-  const port = process.env['PORT'] || 4000;
+  const port = process.env['PORT'] || 4200;
 
   // Start up the Node server
   const server = app();

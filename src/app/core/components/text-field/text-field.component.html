@@ -1,0 +1,22 @@
+<div class="text-field h-fit">
+  <div>
+    <label class="block text-sm font-medium leading-6 text-gray-900">{{label}}</label>
+    <div class="mt-2">
+      <input
+        #input
+        [type]="inputType"
+        [disabled]="disabled"
+        (input)="onChange(input.value)"
+        (blur)="onTouched()"
+        [autocomplete]="name"
+        [(ngModel)]="value"
+        class="block outline-none w-full px-2 py-2 rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+    </div>
+  </div>
+
+  @if (areMessagesShown) {
+    <div class="text-field__error-message">
+      {{errorMessages}}
+    </div>
+  }
+</div>

@@ -1,0 +1,24 @@
+<div class="gallery">
+  <div #galleryContent class="splide" aria-label="My Awesome Gallery">
+    <div class="splide__track">
+      <ul class="splide__list">
+        @for (image of gallery; track $index) {
+          <li class="splide__slide">
+            <img [src]="image.url" alt="">
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+
+  @if (showThumbnails) {
+    <ul class="thumbnails">
+      @for (image of gallery; track $index) {
+        <li class="thumbnail" (click)="goToSlide($index)">
+          <img [src]="image.thumbnail" alt="">
+        </li>
+      }
+    </ul>
+  }
+</div>
+

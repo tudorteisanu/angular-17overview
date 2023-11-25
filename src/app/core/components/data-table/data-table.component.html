@@ -1,0 +1,35 @@
+<div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+<table class="min-w-full divide-y divide-gray-300">
+<thead class="bg-gray-50">
+<tr>
+  @for (header of headers; track header.value) {
+    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+      {{ header.text }}
+    </th>
+  }
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200 bg-white">
+  @for (item of items; track item.id; let even = $even) {
+    <tr>
+      @for (header of headers; track header.value) {
+        @if (header.value === 'actions') {
+          <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+            <ng-template *ngTemplateOutlet="actionsRef; context : { item, header }" />
+          </td>
+        }
+        @else {
+          <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+            @if (itemRef) {
+              <ng-template *ngTemplateOutlet="itemRef; context : { item, header }" />
+            } @else {
+              {{item[header.value]}}
+            }
+          </td>
+        }
+  }
+    </tr>
+  }
+</tbody>
+</table>
+</div>

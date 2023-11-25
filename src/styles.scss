@@ -1,2 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "./assets/scss/app.scss";
+
+[type]:not(input, button) {
+  padding: 0;
+  border: none;
+}
+
+html, body {
+  @apply h-full;
+}

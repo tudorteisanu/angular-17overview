@@ -1,0 +1,18 @@
+.login-page {
+
+  &__form {
+    padding-top: 50px;
+    max-width: 476px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__submit-btn {
+    margin-top: 15px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
