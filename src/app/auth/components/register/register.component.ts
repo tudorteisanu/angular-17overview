@@ -5,7 +5,7 @@ import { TextFieldComponent } from "@/core/components/text-field/text-field.comp
 import { RouterLink } from '@angular/router';
 import { CardComponent } from '@/core/components/card/card.component';
 import { AuthLayoutComponent } from "@/core/layouts/auth-layout/auth-layout.component";
-import { RegisterStore } from "@/auth/store/register.store";
+import { RegisterStore } from "./register.store";
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,6 @@ import { RegisterStore } from "@/auth/store/register.store";
 export class RegisterComponent {
   fb = inject(NonNullableFormBuilder);
   store = inject(RegisterStore);
-  errorMessage = this.store.errorMessage;
   registerForm = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(128)]],
     password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(128)]],

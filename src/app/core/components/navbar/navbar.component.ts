@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MenuItemInterface } from 'src/app/core/types';
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { menu } from 'src/app/core/settings';
-import { AuthStore } from "@/auth/store/auth.store";
+import { AuthStore } from "@/auth/auth.store";
 
 @Component({
   selector: 'app-navbar',

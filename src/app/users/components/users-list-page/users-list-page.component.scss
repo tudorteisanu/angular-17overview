@@ -2,7 +2,12 @@
 
   &__content {
     padding: 3rem;
+  }
 
+  .delete-btn {
+    @apply border border-danger bg-secondary rounded;
+    @apply font-normal text-danger;
+    @apply hover:bg-secondary-light;
   }
 
 }

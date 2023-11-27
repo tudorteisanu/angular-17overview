@@ -6,13 +6,13 @@ import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angula
 import { RouterLink } from '@angular/router';
 import { ErrorMessageComponent } from "@/core/components/error-message/error-message.component";
 import {AuthLayoutComponent} from "@/core/layouts/auth-layout/auth-layout.component";
-import { LoginStore } from "@/auth/store/login.store";
+import { LoginStore } from "@/auth/components/login/login.store";
 
 @Component({
-  selector: 'app-login-page',
+  selector: 'app-login',
   standalone: true,
-  templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.scss',
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss',
   imports: [
     CommonModule,
     CardComponent,
@@ -23,7 +23,7 @@ import { LoginStore } from "@/auth/store/login.store";
     AuthLayoutComponent,
   ]
 })
-export class LoginPageComponent {
+export class LoginComponent {
   fb = inject(NonNullableFormBuilder);
   store = inject(LoginStore);
   errorMessage = this.store.errorMessage;

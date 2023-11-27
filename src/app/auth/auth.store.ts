@@ -1,7 +1,6 @@
 import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
 import { inject } from "@angular/core";
-import { LoginInputInterface } from "@/auth/types/login-input.interface";
-import { AuthService } from "@/auth/services/auth.service";
+import { AuthService } from "@/auth/auth.service";
 import { UserInterface } from "@/core/types";
 import { tap, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
@@ -23,34 +22,13 @@ export const AuthStore = signalStore(
     const authService = inject(AuthService);
 
     return {
-      login: (loginInput: LoginInputInterface) => {
-        return authService.login(loginInput)
-          .pipe(
-            tap((payload) => {
-            const {
-              user: currentUser,
-              tokens: {
-              access: accessToken,
-              refresh: refreshToken,
-            } } = payload;
-            patchState(state, {
-              accessToken,
-              refreshToken,
-              currentUser,
-            })
-
-              localStorage.setItem('accessToken', accessToken);
-              localStorage.setItem('refreshToken', refreshToken);
-          })
-          );
-      },
       fetchCurrentUser: () => {
-return          authService.fetchUser()
-  .pipe(tap((currentUser) => {
-    patchState(state, {
-      currentUser
-    })
-  }))
+        return authService.fetchUser()
+          .pipe(tap((currentUser) => {
+            patchState(state, {
+              currentUser
+            })
+          }))
       },
       logout: async () => {
         localStorage.removeItem('accessToken');
@@ -60,12 +38,20 @@ return          authService.fetchUser()
         patchState(state, {
           accessToken,
         })
+        localStorage.setItem('accessToken', accessToken);
     },
       setRefreshToken: (refreshToken) => {
         patchState(state, {
           refreshToken,
         })
-    },
+
+        localStorage.setItem('refreshToken', refreshToken);
+      },
+      setCurrentUser: (currentUser) => {
+        patchState(state, {
+          currentUser,
+        })
+      },
       removeAccessToken() {
         patchState(state, {
           accessToken: null,

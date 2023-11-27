@@ -3,10 +3,10 @@ import { Route } from "@angular/router";
 export const authRoutes: Route[] = [
   {
     path: 'register',
-    loadComponent: () => import('./components/register/register.component').then(m => m.RegisterComponent)
+    loadChildren: () => import('./components/register/register.route').then(m => m.registerRoute)
   },
   {
     path: 'login',
-    loadComponent: () => import('./components/login-page/login-page.component').then(m => m.LoginPageComponent)
+    loadChildren: () => import('./components/login/login.route').then(m => m.loginRoute)
   },
 ]

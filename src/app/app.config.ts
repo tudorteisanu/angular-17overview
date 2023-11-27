@@ -6,7 +6,7 @@ import { provideHttpClient, withFetch, withInterceptors } from "@angular/common/
 import { httpInterceptor } from '@/core/interceptors/http.interceptor';
 import { errorInterceptor } from "@/core/interceptors/error.interceptor";
 import { initializeApp } from "@/app.initializer";
-import { AuthStore } from "@/auth/store/auth.store";
+import { AuthStore } from "@/auth/auth.store";
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -1,5 +1,6 @@
 import { inject } from "@angular/core";
-import { AuthStore } from "@/auth/store/auth.store";
+import { AuthStore } from "@/auth/auth.store";
+import { EMPTY, of } from "rxjs";
 
 export function initializeApp() {
   const store = inject(AuthStore);
@@ -14,7 +15,9 @@ export function initializeApp() {
 
       if (accessToken) {
         store.setAccessToken(accessToken)
-        store.fetchCurrentUser()
+        return store.fetchCurrentUser()
       }
+
+    return of(EMPTY)
   }
 }
